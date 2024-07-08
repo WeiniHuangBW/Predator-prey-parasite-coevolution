@@ -5,9 +5,9 @@
 import pandas as pd, math, statistics, random, numpy.random as nura, numpy as np, array as arr, matplotlib.pyplot as plt, matplotlib.patches as mpatches, sys, getopt, time
 
 # Create .csv output file for recording the average abundance, genotypic diversity, genotypic lifespan, emergence of super-types and coexistence
-# str(float(sys.argv[4])) position 4 in command line to assign a number of the corresponding realisation to avoid overwriting the correspondent files
+# str(float(sys.argv[4])) position 4 in command line to assign a number of the corresponding realisation to avoid overwriting the files
 output_file = open("output_file_" + str(float(sys.argv[4])) + ".csv", "w") # This file will provide information about average abundance, average genotypes, emergence of super-types and coexistence from a single realisation
-output_file.write("rp,rx,prey individuals,parasite individuals,predator individuals,prey genotypes,parasite genotypes,predator genotypes,prey genotypic lifespan,parasite genotypic lifespan,predator genotypic lifespan,super resistant prey,super infective parasite,super resistant predator,all coexist,predator and prey coexist,prey coexist,all extinct\n")
+output_file.write("rp,rx,prey_individuals,parasite_individuals,predator_individuals,prey_genotypes,parasite_genotypes,predator_genotypes,prey_lifespan,parasite_lifespan,predator_lifespan,super_prey,super_parasite,super_predator,coexistence,coexistence_pred_prey,coexistence_prey,extinction\n")
 
 ## Function for appending rows of new genotypes(for simulation purposes)
 def loop_to_compare_array(the_array, new_genotype, time):
@@ -202,7 +202,7 @@ av_predator_genotypic_lifespan = 0
 max_time = float(sys.argv[3]) # third position in command line to vary the total time to run the simulation (Gillespie algorithm)
 Time = 0 # initial Gillespie time (we add dt_next_event and run until reaching max_time)
 dt_next_event = 0 # random time step after event occurs (following the Gillespie algorithm). This quantity is summed to the total time (continuos time simulation)
-n = 0 # number of time points across simulations in which we record abundances of subpopulations (in units of one, i.e., n+1)
+n = 200 # we record pop sizes and genotypic diversity every n step and when Time > n, i.e., from timepoint 200
 
 ### GILLESPIE ALGORITHM ###
 ### SIMULATION STARTS ###
